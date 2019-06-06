@@ -1,0 +1,93 @@
+version: "3"
+
+services:
+
+  bitcoind:
+    restart: unless-stopped
+    image: nicolasdorier/docker-bitcoin:0.17.0
+    environment:
+      BITCOIN_NETWORK: regtest
+      BITCOIN_EXTRA_ARGS: |
+        rpcuser=ceiwHEbqWI83
+        rpcpassword=DwubwWsoo3
+        server=1
+        rpcport=43782
+        port=39388
+        whitelist=0.0.0.0/0
+        zmqpubrawblock=tcp://0.0.0.0:28332
+        zmqpubrawtx=tcp://0.0.0.0:28333
+        deprecatedrpc=signrawtransaction
+        addresstype=p2sh-segwit
+    ports: 
+      - "37393:43782"
+      - "23823:28332"
+    expose:
+      - "43782" # RPC
+      - "39388" # P2P
+    networks:
+      - bitcoind_ptarmigan
+    volumes:
+      - "bitcoind_dir:/data"
+
+  ptarmigan:
+    restart: unless-stopped
+    stop_signal: SIGKILL
+    build: "./ptarm"
+    environment:
+      NODE_NAME: test
+      CHAIN: regtest
+      PORT: 12345
+      RPC_PORT: 43782
+      RPC_USER: ceiwHEbqWI83
+      RPC_PASSWORD: DwubwWsoo3
+      RPC_URL: bitcoind
+      ANNOUNCE_IP: ptarmigan
+    ports:
+      - "3000:3000"
+      - "12345:12345"
+    expose:
+      - "3000"
+      - "12345"
+    networks:
+      - bitcoind_ptarmigan
+    volumes:
+      - "bitcoind_dir:/root/.bitcoin"
+      - "ptarmigan_dir:/data"
+    depends_on:
+      - "bitcoind"
+      - "nbxplorer"
+  
+  nbxplorer:
+    image: nicolasdorier/nbxplorer:2.0.0.48
+    restart: unless-stopped
+    stop_signal: SIGKILL
+    ports:
+      - "32838:32838"
+    expose: 
+      - "32838"
+    environment:
+      NBXPLORER_NETWORK: regtest
+      NBXPLORER_CHAINS: "btc"
+      NBXPLORER_BTCRPCURL: http://bitcoind:43782/
+      NBXPLORER_BTCNODEENDPOINT: bitcoind:39388
+      NBXPLORER_BTCRPCUSER: ceiwHEbqWI83
+      NBXPLORER_BTCRPCPASSWORD: DwubwWsoo3
+      NBXPLORER_LTCRPCURL: http://litecoind:43782/
+      NBXPLORER_LTCNODEENDPOINT: litecoind:39388
+      NBXPLORER_LTCRPCUSER: ceiwHEbqWI83
+      NBXPLORER_LTCRPCPASSWORD: DwubwWsoo3
+      NBXPLORER_BIND: 0.0.0.0:32838
+      NBXPLORER_VERBOSE: 1
+      NBXPLORER_NOAUTH: 1
+    networks:
+      - bitcoind_ptarmigan
+    depends_on:
+      - "bitcoind"
+
+networks:
+  bitcoind_ptarmigan:
+    external: true
+      
+volumes:
+  bitcoind_dir:
+  ptarmigan_dir:
