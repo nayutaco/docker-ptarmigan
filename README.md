@@ -19,13 +19,13 @@ Please be sure to put this value.
 - RPC_PORT
     - bitcoind RPC port.
 - RPC_USER
-    - bitcoind.conf user
+    - bitcoind user
 - RPC_PASSWORD
-    - bitcoind.conf password
+    - bitcoind password
 - RPC_URL
-    - bitcoind rpc url
+    - bitcoind RPC url
 - ANNOUNCE_IP
-    - ptarmigan local ip address    
+    - ptarmigan's global ip address    
 
 ### build
 
