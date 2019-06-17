@@ -11,7 +11,7 @@ Please be sure to put this value.
 [options details](https://github.com/nayutaco/ptarmigan/blob/master/docs/ptarmd.md)
 
 - NODE_NAME
-    - ptarmd's node name 
+    - ptarmigan node name 
 - CHAIN
     - mainnet, testnet, regtest
 - LIGHTNING_PORT
@@ -25,21 +25,29 @@ Please be sure to put this value.
 - RPC_URL
     - bitcoind RPC url
 - ANNOUNCE_IP
-    - ptarmigan's global ip address    
+    - ptarmigan global ip address
+    
+### Create docker network
 
-### build
+Please create docker network.
+
+```
+docker network create bitcoind_ptarmigan
+```
+
+### Build
 
 ```
 docker-compose build
 ```
 
-### up
+### Up
 
 ```
 docker-compose up
 ```
 
-### down
+### Down
 
 ```
 docker-compose down 
@@ -47,10 +55,28 @@ or
 docker-compose down --v
 ```
 
-### exec
+### Exec
 
 ```
 docker-compose exec ptarmigan bash
+```
+
+Default workdir is `/ptarmigan` and default Ptarmigan node is `test`.
+
+ex) run `ptarmcli --getinfo`.
+
+```
+root@d106a876b9fb:/ptarmigan/install/test# ../ptarmcli --getinfo
+{
+ "result": {
+  "node_id": "0266b9882df0aeb943d13d8b1e3dd045963272b583e3d70125eef8bc2bd0aa2bd1",
+  "node_port": 12345,
+  "announce_ip": "172.27.0.4:12345",
+  "total_local_msat": 0,
+  "block_count": 101,
+  "peers": []
+ }
+}
 ```
 
 ## About Ptarmigan REST API
