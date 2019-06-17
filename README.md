@@ -25,7 +25,15 @@ Please be sure to put this value.
 - RPC_URL
     - bitcoind RPC url
 - ANNOUNCE_IP
-    - ptarmigan's global ip address    
+    - ptarmigan's global ip address
+    
+### Create docker network
+
+Please create docker network.
+
+```
+docker network create bitcoind_ptarmigan
+```
 
 ### build
 
