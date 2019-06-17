@@ -11,7 +11,7 @@ Please be sure to put this value.
 [options details](https://github.com/nayutaco/ptarmigan/blob/master/docs/ptarmd.md)
 
 - NODE_NAME
-    - ptarmd's node name 
+    - ptarmigan node name 
 - CHAIN
     - mainnet, testnet, regtest
 - LIGHTNING_PORT
@@ -25,7 +25,7 @@ Please be sure to put this value.
 - RPC_URL
     - bitcoind RPC url
 - ANNOUNCE_IP
-    - ptarmigan's global ip address
+    - ptarmigan global ip address
     
 ### Create docker network
 
