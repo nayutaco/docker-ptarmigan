@@ -1,6 +1,6 @@
-# Ptarmigan Docker
+# [Ptarmigan](https://github.com/nayutaco/ptarmigan) Docker
 
-[Ptarmigan's](https://github.com/nayutaco/ptarmigan) `Dockerfile` and `Docker Compose`.
+Ptarmigan's `Dockerfile` and `Docker Compose`.
 
 We recommend using **Docker Compose**.
 
