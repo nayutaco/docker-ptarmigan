@@ -13,7 +13,7 @@ Please be sure to put this value.
 - NODE_NAME
     - ptarmigan node name 
 - CHAIN
-    - mainnet, testnet, regtest
+    - mainnet, testnet, regtest. default regtest.
 - LIGHTNING_PORT
     - ptarmigan lightning network port. default 9735.
 - RPC_PORT
