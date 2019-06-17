@@ -35,19 +35,19 @@ Please create docker network.
 docker network create bitcoind_ptarmigan
 ```
 
-### build
+### Build
 
 ```
 docker-compose build
 ```
 
-### up
+### Up
 
 ```
 docker-compose up
 ```
 
-### down
+### Down
 
 ```
 docker-compose down 
@@ -55,7 +55,7 @@ or
 docker-compose down --v
 ```
 
-### exec
+### Exec
 
 ```
 docker-compose exec ptarmigan bash
