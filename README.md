@@ -14,8 +14,8 @@ Please be sure to put this value.
     - ptarmd's node name 
 - CHAIN
     - mainnet, testnet, regtest
-- PORT
-    - ptarmigan api port. default 9735
+- LIGHTNING_PORT
+    - ptarmigan lightning network port. default 9735.
 - RPC_PORT
     - bitcoind RPC port.
 - RPC_USER
