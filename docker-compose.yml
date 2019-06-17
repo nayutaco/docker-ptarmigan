@@ -36,7 +36,7 @@ services:
     environment:
       NODE_NAME: test
       CHAIN: regtest
-      PORT: 12345
+      LIGHTNING_PORT: 12345
       RPC_PORT: 43782
       RPC_USER: ceiwHEbqWI83
       RPC_PASSWORD: DwubwWsoo3
