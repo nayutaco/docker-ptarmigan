@@ -13,9 +13,18 @@ touch ./ptarmapi/.env
   echo BITCOIND_PASS='"'${RPC_PASSWORD}'"'
 } >> ./ptarmapi/.env
 
+cd ./ptarmapi
+npm run start &
+
+sleep 3;
+cd ..
 cd ./install && ./new_nodedir.sh ${NODE_NAME}
 cd ${NODE_NAME}
-../ptarmd --network=${CHAIN} --port=${LIGHTNING_PORT} --bitcoinrpcport=${RPC_PORT} --bitcoinrpcuser=${RPC_USER} --bitcoinrpcpassword=${RPC_PASSWORD} --bitcoinrpcurl=${RPC_URL} --announceip=${ANNOUNCE_IP} --announceip_force&
-
-cd ../../ptarmapi
-npm run start
+../ptarmd --network=${CHAIN} \
+  --port=${LIGHTNING_PORT} \
+  --bitcoinrpcport=${RPC_PORT} \
+  --bitcoinrpcuser=${RPC_USER} \
+  --bitcoinrpcpassword=${RPC_PASSWORD} \
+  --bitcoinrpcurl=${RPC_URL} \
+  --announceip=${ANNOUNCE_IP} \
+  --announceip_force
